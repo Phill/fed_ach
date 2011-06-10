@@ -14,13 +14,13 @@ require 'fed_arh'
 data = FedARH.new(<data_file||data_url>).parse
 ```
 
-Example usage to load a database in Ruby on Rails
+Example usage to load a database in Ruby on Rails using MongoDB and
+Mongoid
 =================================================
 
-Setup your model like this: (Using Mongoid)
+Setup your models like this:
 
 ```ruby
-require 'fed_arh'
 class FedModel
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -42,15 +42,44 @@ class FedModel
   field :institution_status
   field :data_view_code
   field :filler
+end
 ```
 
-In your controller add:
+Resque RunImport for background processing:
 
 ```ruby
+require 'fed_arh'
+class RunImport
+  def self.perform(data_file = nil)
+    return false if data_file.nil?
+    load_data_info_database(data_file)
+  end
+
   def load_data_into_database(data_file)
     data = FedARH.new(data_file).parse
     data.each do |d|
       FedModel.create(d)
     end
   end
+end
+```
+
+In your controller add:
+
+```ruby
+class Import < ApplicationController
+  respond_to :html
+
+  def index
+  end
+
+  def new
+  end
+
+  def create
+    Resque.enqueue(RunImport, params[:import][:feed_file].read)
+    flash[:notice] = 'Import running in background.'
+    redirect_to import_index_path
+  end
+end
 ```
