@@ -45,7 +45,7 @@ class FedModel
 end
 ```
 
-Resque RunImport for background processing:
+Resque RunImport task for background processing:
 
 ```ruby
 require 'fed_arh'
@@ -64,7 +64,7 @@ class RunImport
 end
 ```
 
-In your controller add:
+Setup your controller like this:
 
 ```ruby
 class Import < ApplicationController
