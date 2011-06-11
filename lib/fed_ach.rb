@@ -9,6 +9,10 @@ class FedACH
     return false unless @data = open(data_file)
   end
 
+  #
+  # Defined fields for parsing data file 
+  # from: http://www.fededirectory.frb.org/format_ACH.cfm
+  #
   def fields
     {
       # Field Name        Start At, Count
