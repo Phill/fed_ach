@@ -1,22 +1,18 @@
-FedACH
-======
+# FedACH
 
 Federal Reserve E-Payments Routing Directory Parser
 
 Created for Square's Ruby on Rails Software Engineer job application on 2011-06-10.
 Referred by Colin Loretz at Reno Collective.
 
-Usage
-=====
+# Usage
 
 ```ruby
 require 'fed_ach'
 data = Fedach.new(<data_file_path || data_file_url>).parse
 ```
 
-Example usage to load a database in Ruby on Rails using MongoDB and
-Mongoid
-=================================================
+# Example usage to load a database in Ruby on Rails using MongoDB and Mongoid
 
 Setup your models like this:
 
@@ -84,8 +80,7 @@ class Import < ApplicationController
 end
 ```
 
-Special Notes
-=============
+# Special Notes
 
 While writing this I forgot to go to lunch.  After getting back from my
 food break I realized that I typoed the name of the GEM.  I renamed it
