@@ -83,3 +83,11 @@ class Import < ApplicationController
   end
 end
 ```
+
+Special Notes
+=============
+
+While writing this I forgot to go to lunch.  After getting back from my
+food break I realized that I typoed the name of the GEM.  I renamed it
+and retested and all looks good, but I have to keep the wrong name in
+the repo url.  Please excuse my whoops.
