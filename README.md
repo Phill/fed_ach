@@ -11,7 +11,7 @@ Usage
 
 ```ruby
 require 'fed_ach'
-data = Fedach.new(<data_file||data_url>).parse
+data = Fedach.new(<data_file_path || data_file_url>).parse
 ```
 
 Example usage to load a database in Ruby on Rails using MongoDB and
@@ -50,13 +50,13 @@ Resque RunImport task for background processing:
 ```ruby
 require 'fed_ach'
 class RunImport
-  def self.perform(data_file = nil)
-    return false if data_file.nil?
-    load_data_info_database(data_file)
+  def self.perform(data_file_path_or_url = nil)
+    return false if data_file_path_or_url.nil?
+    load_data_info_database(data_file_path_or_url)
   end
 
-  def load_data_into_database(data_file)
-    data = FedACH.new(data_file).parse
+  def load_data_into_database(data_file_path_or_url)
+    data = FedACH.new(data_file_path_or_url).parse
     data.each do |d|
       FedModel.create(d)
     end
@@ -77,7 +77,7 @@ class Import < ApplicationController
   end
 
   def create
-    Resque.enqueue(RunImport, params[:import][:feed_file].read)
+    Resque.enqueue(RunImport, params[:import][:data_file_path_or_url].read)
     flash[:notice] = 'Import running in background.'
     redirect_to import_index_path
   end
