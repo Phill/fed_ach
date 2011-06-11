@@ -56,7 +56,7 @@ class RunImport
   end
 
   def load_data_into_database(data_file)
-    data = Fedach.new(data_file).parse
+    data = FedACH.new(data_file).parse
     data.each do |d|
       FedModel.create(d)
     end
