@@ -1,5 +1,5 @@
 require 'open-uri'
-class FedARH
+class FedACH
   unless const_defined?(:VERSION)
     VERSION = '0.0.1'
   end

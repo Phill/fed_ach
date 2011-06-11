@@ -1,10 +1,10 @@
 require 'test/unit'
-require 'fed_arh'
+require 'fed_ach'
 
-class FedARHTest < Test::Unit::TestCase
+class FedACHTest < Test::Unit::TestCase
 
   def setup
-    @data = FedARH.new(File.dirname(__FILE__) + '/fixtures/sample_data').parse;
+    @data = FedACH.new(File.dirname(__FILE__) + '/fixtures/sample_data').parse;
   end
 
   def test_initalize

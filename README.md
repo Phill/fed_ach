@@ -1,4 +1,4 @@
-FedARH
+FedACH
 ======
 
 Federal Reserve E-Payments Routing Directory Parser
@@ -10,8 +10,8 @@ Usage
 =====
 
 ```ruby
-require 'fed_arh'
-data = FedARH.new(<data_file||data_url>).parse
+require 'fed_ach'
+data = Fedach.new(<data_file||data_url>).parse
 ```
 
 Example usage to load a database in Ruby on Rails using MongoDB and
@@ -48,7 +48,7 @@ end
 Resque RunImport task for background processing:
 
 ```ruby
-require 'fed_arh'
+require 'fed_ach'
 class RunImport
   def self.perform(data_file = nil)
     return false if data_file.nil?
@@ -56,7 +56,7 @@ class RunImport
   end
 
   def load_data_into_database(data_file)
-    data = FedARH.new(data_file).parse
+    data = Fedach.new(data_file).parse
     data.each do |d|
       FedModel.create(d)
     end
