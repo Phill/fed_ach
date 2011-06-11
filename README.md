@@ -1,6 +1,7 @@
 # FedACH
 
 Federal Reserve E-Payments Routing Directory Parser
+http://www.fededirectory.frb.org/format_ACH.cfm
 
 Created for Square's Ruby on Rails Software Engineer job application on 2011-06-10.
 Referred by Colin Loretz at Reno Collective.
